@@ -61,3 +61,5 @@ app.use(Sentry.Handlers.errorHandler())
 app.listen(3000, () => {
     logger.info(`Listening on port 3000`, { label: 'HTTP' })
 })
+
+module.exports = app;

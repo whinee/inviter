@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SwitchbladeBot/invidget.git"
+    "url": "git+https://github.com/whinee/inviter.git"
   },
   "standard": {
     "env": [
