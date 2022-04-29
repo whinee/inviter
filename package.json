@@ -22,7 +22,9 @@
     "jest": "^27.2.3",
     "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.13",
-    "standard": "^16.0.3"
+    "standard": "^16.0.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^4.9.1"
   },
   "scripts": {
     "start": "node src/index.js",
