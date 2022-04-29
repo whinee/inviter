@@ -1,6 +1,10 @@
-MIT License
+<h1 align="center" style="font-weight: bold">
+    <a target="_blank" href="https://choosealicense.com/licenses/mit/">MIT LICENSE</a>
+</h1>
 
-Copyright (c) 2019 Switchblade
+Copyright for portions of project [inviter](https://github.com/whinee/inviter) are held by [Switchblade, Github account [SwitchbladeBot](https://github.com/SwitchbladeBot) owner, 2019] as part of project [invidget](https://github.com/SwitchbladeBot/invidget), by [whi_ne, Github account [whinee](https://github.com/whinee) owner, 2022] as part of project [hyaku](https://github.com/hyaku-dl/hyaku), and by [whi_ne, Github account [whinee](https://github.com/whinee) owner, 2022] as part of project [YAMHL](https://github.com/Pirate-Kings/YAMHL).
+
+All other copyright for project [inviter](https://github.com/whinee/inviter) are held by [Github Account [whinee](https://github.com/whinee) Owner, 2022].
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

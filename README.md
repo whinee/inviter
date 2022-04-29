@@ -15,7 +15,7 @@
 
 ### Base URL:
 ```
-http://invidget.switchblade.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
+https://invidget.whinyaan.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
 ```
 
 #### Notes

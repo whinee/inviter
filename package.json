@@ -4,6 +4,7 @@
   "description": "SVG invite widgets that look just like the ones on the Discord client!",
   "main": "src/index.js",
   "dependencies": {
+    "core-js": "^3.4",
     "@sentry/node": "^6.13.2",
     "@svgdotjs/svg.js": "^3.1.1",
     "dd-trace": "^1.4.1",

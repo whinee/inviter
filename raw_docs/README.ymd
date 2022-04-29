@@ -1,0 +1,158 @@
+<!-- Repository Name. Preferrably 1-5 words long. -->
+<h1 align="center" style="font-weight: bold">
+    <span id="min-block-shrink">▀▄▀▄▀▄</span>
+    <span id="min-block">${title}</span>
+    <span id="min-block-shrink">▀▄▀▄▀▄</span>
+</h1>
+
+<p align="center">
+    <a href="https://github.com/${organization}/${repo_name}/issues">
+        <img src="https://img.shields.io/github/issues/${organization}/${repo_name}.svg?style=flat-square&logo=data:image/png;base64,${issues_b64}">
+    </a>
+    <a href="https://github.com/${organization}/${repo_name}/network/members">
+        <img src="https://img.shields.io/github/forks/${organization}/${repo_name}.svg?style=flat-square&logo=data:image/png;base64,${forks_b64}">
+    </a>
+    <a href="https://github.com/${organization}/${repo_name}/stargazers">
+        <img src="https://img.shields.io/github/stars/${organization}/${repo_name}.svg?style=flat-square&logo=data:image/png;base64,${stars_b64}">
+    </a>
+    <a href="https://github.com/${organization}/${repo_name}/graphs/contributors">
+        <img src="https://img.shields.io/github/contributors/${organization}/${repo_name}.svg?style=flat-square&logo=data:image/png;base64,${contributors_b64}">
+    </a>
+    <a href="https://${site}/license.html">
+        <img src="https://img.shields.io/badge/LICENSE-A31F34?style=flat-square&logoWidth=25&logo=data:image/png;base64,${license_b64}">
+    </a>
+</p>
+<p align="center">
+    <a href="https://app.codacy.com/gh/${organization}/${repo_name}/dashboard?branch=master">
+        <img alt="Codacy Badge" src="https://img.shields.io/codacy/grade/${codacy_id}?style=flat-square">
+    </a>
+</p>
+<p align="center">
+    <a target="_blank" href="https://discord.com/invite/${dc_inv}">
+        <img src="https://invidget.whinyaan.xyz/${dc_inv}?theme=transparent&color[serverName]=d64f50&color[header]=9383e2&color[presenceText]=684fe2">
+    </a>
+</p>
+
+<!-- About section. Preferrably 2-5 sentences long. -->
+---
+
+<h4 align="center">
+${desc}
+</h4>
+
+---
+
+Github: [github.com/${organization}/${repo_name}](https://github.com/${organization}/${repo_name})
+
+Website: [${site}](https://${site})
+
+---
+
+[github.com/${organization}/${repo_name}](https://github.com/${organization}/${repo_name}) is a fork of <a target="_blank" href="https://github.com/SwitchbladeBot/invidget">SwitchbladeBot/invidget</a>, aiming to provide more cuztomizeability in regards to the SVGs colors.
+
+To be updated, be sure to watch this repository.
+
+For the legals, visit [LICENSE](license).
+
+Interested in commisioning projects? Inquire through Discord(<a target="_blank" href="${dc_link}">${dc_acc}</a>) or through e-mail(<a target="_blank" href="${mail_link}">${mail_acc}</a>). Pricing starts at 15 USD.
+
+## **Features**
+
+**inviter** generates SVG renders of Discord invites that can be used in GitHub READMEs or even websites. These are a great way to increase conversions and get more people to join your server.
+
+<!-- Mention examples of application of this repository. -->
+## **Usage**
+
+### Dark theme (default)
+
+Format:
+
+```txt
+https://${site}/{code}
+```
+
+![preview](https://${site}/${dc_inv})
+
+### Light theme
+
+```txt
+https://${site}/{code}?theme=light
+```
+
+![preview](https://${site}/${dc_inv}?theme=light)
+
+### Different language
+
+```txt
+https://${site}/{code}?language=pt
+```
+
+inviter uses [ISO 639-1 code](https://en.wikipedia.org/wiki/ISO_639-1) for identifying languages.
+
+![preview](https://${site}/${dc_inv}?language=pt)
+
+### Customize colors
+
+```txt
+https://${site}/${code}?color[serverName]=d64f50&color[header]=9383e2&color[presenceText]=684fe2
+```
+
+![preview](https://${site}/${dc_inv}?color[serverName]=d64f50&color[header]=9383e2&color[presenceText]=684fe2)
+
+#### Structure
+
+```txt
+color
+├── joinButtonBackground
+│   ├── joinButtonText
+│   ├── online
+│   ├── members
+│   └── badges
+│       ├── PARTNERED
+│       │   ├── flowerStar
+│       │   └── icon
+│       └── VERIFIED
+│           ├── flowerStar
+│           └── icon
+├── background
+├── serverName
+├── header
+├── serverIcon
+├── acronymText
+└── presenceText
+```
+
+To modify the color of `flowerStar` badge of `PARTNERED`, use the following query parameter:
+
+```txt
+color[badges][PARTNERED][flowerStar]={hex}
+```
+
+#### Notes
+
+- The color customization precedes the theme
+
+<!-- License section. Leave unchanged except when updating the year, using a different license, or changing the style altogether. -->
+## **License**
+
+### <a target="_blank" href="https://choosealicense.com/licenses/mit/">MIT</a>
+
+${cholder}
+
+Check the [license](license) for more details.
+
+## **Credits**
+
+### MIT Logo
+
+<a target="_blank" href="https://commons.wikimedia.org/wiki/File:MIT_logo.svg">Massachusetts Institute of Technology</a> (vectorized by <a target="_blank" href="https://en.wikipedia.org/wiki/User:Mysid">Mysid</a>, modified by [${user}](https://github.com/${user})), Public domain, via Wikimedia Commons
+
+### Icons
+
+<a target="_blank" href="https://icons8.com/icon/102502/exclamation-mark">Exclamation Mark</a>, <a target="_blank" href="https://icons8.com/icon/33294/code-fork">Code Fork</a>, <a target="_blank" href="https://icons8.com/icon/85185/star">Star</a>, <a target="_blank" href="https://icons8.com/icon/34095/group">Group</a>, <a target="_blank" href="https://icons8.com/icon/87276/code">Code</a>, and <a href="https://icons8.com/icon/30888/discord">Discord</a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<sub>
+    <i>
+        <b>NOTE:</b> If a reference or source material is not attributed properly or not at all, please kindly message me at Discord: <a target="_blank" href="${dc_link}">${dc_acc}</a> or create a pull request so I can properly give credit to their respective authors.
+    </i>
+</sub>
