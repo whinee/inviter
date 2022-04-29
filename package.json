@@ -28,7 +28,8 @@
     "start": "node src/index.js",
     "test": "jest",
     "lint": "standard",
-    "dev": "nodemon --exec node -r dotenv/config src"
+    "dev": "nodemon --exec node -r dotenv/config src",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

@@ -24,7 +24,7 @@
 </p>
 <p align="center">
     <a href="https://app.codacy.com/gh/whinee/inviter/dashboard?branch=master">
-        <img alt="Codacy Badge" src="https://img.shields.io/codacy/grade/385ceb2d55424256a93f9ad6f8007f91?style=flat-square">
+        <img alt="Codacy Badge" src="https://img.shields.io/codacy/grade/b55dba11e86b49ba8b51573413e20eac?style=flat-square">
     </a>
 </p>
 <p align="center">
