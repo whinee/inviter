@@ -58,6 +58,6 @@ app.get('/:query', async (req, res) => {
 
 app.use(Sentry.Handlers.errorHandler())
 
-app.listen(PORT, () => {
-    logger.info(`Listening on port ${PORT}`, { label: 'HTTP' })
+app.listen(3000, () => {
+    logger.info(`Listening on port 3000`, { label: 'HTTP' })
 })
