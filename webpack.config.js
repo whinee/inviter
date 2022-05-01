@@ -1,5 +1,5 @@
 module.exports = {
     target: "webworker",
-    entry: "./api/index.js",
+    entry: "./src/index.js",
     mode: "production"
 }
