@@ -87,7 +87,7 @@ const THEMES = {
         serverIcon: '#ffffff',
         acronymText: '#2e3338',
         presenceText: '#4f5660'
-    },
+    }
 }
 
 module.exports = class InviteRenderer {
