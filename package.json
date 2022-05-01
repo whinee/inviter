@@ -30,8 +30,7 @@
     "start": "node src/index.js",
     "test": "jest",
     "lint": "standard",
-    "dev": "nodemon --exec node -r dotenv/config src",
-    "build": "webpack"
+    "dev": "nodemon --exec node -r dotenv/config src"
   },
   "repository": {
     "type": "git",
@@ -50,8 +49,5 @@
     ]
   },
   "author": "Switchblade Team",
-  "license": "MIT",
-  "engines": {
-    "node": ">15 <17"
-  }
+  "license": "MIT"
 }
