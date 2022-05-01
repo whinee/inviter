@@ -18,7 +18,7 @@
     <a href="https://github.com/${organization}/${repo_name}/graphs/contributors">
         <img src="https://img.shields.io/github/contributors/${organization}/${repo_name}.svg?style=flat-square&logo=data:image/png;base64,${contributors_b64}">
     </a>
-    <a href="https://${site}/license.html">
+    <a href="https://${site}/license">
         <img src="https://img.shields.io/badge/LICENSE-A31F34?style=flat-square&logoWidth=25&logo=data:image/png;base64,${license_b64}">
     </a>
 </p>
@@ -29,7 +29,7 @@
 </p>
 <p align="center">
     <a target="_blank" href="https://discord.com/invite/${dc_inv}">
-        <img src="https://invidget.whinyaan.xyz/${dc_inv}?theme=transparent&color[serverName]=d64f50&color[header]=9383e2&color[presenceText]=684fe2">
+        <img src="https://inviter.whinyaan.xyz/${dc_inv}?theme=transparent&color[serverName]=d64f50&color[header]=9383e2&color[presenceText]=684fe2">
     </a>
 </p>
 

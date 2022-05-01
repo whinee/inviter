@@ -72,14 +72,6 @@ const COMMON_COLORS = {
 }
 
 const THEMES = {
-    // dark: {
-    //     background: 'hsl(223,7%,19%)',
-    //     serverName: 'hsl(0,0%,100%)',
-    //     header: 'hsl(216,4%,74%)',
-    //     serverIcon: 'hsl(220,8%,23%)',
-    //     acronymText: 'hsl(210,3%,87%)',
-    //     presenceText: 'hsl(216,4%,74%)'
-    // },
     dark: {
         background: '#2f3136',
         serverName: '#ffffff',
@@ -95,14 +87,6 @@ const THEMES = {
         serverIcon: '#ffffff',
         acronymText: '#2e3338',
         presenceText: '#4f5660'
-    },
-    dark: {
-        background: '#00000000',
-        serverName: '#ffffff',
-        header: '#b9bbbe',
-        serverIcon: '#36393f',
-        acronymText: '#dcddde',
-        presenceText: '#b9bbbe'
     },
 }
 
