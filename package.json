@@ -50,5 +50,8 @@
     ]
   },
   "author": "Switchblade Team",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">15 <17"
+  }
 }
