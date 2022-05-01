@@ -58,8 +58,8 @@ app.get('/:query', async (req, res) => {
 
 app.use(Sentry.Handlers.errorHandler())
 
-app.listen(8080, () => {
-    logger.info(`Listening on port 8080`, { label: 'HTTP' })
+app.listen(process.env.PORT, () => {
+    logger.info(`Listening on port ${process.env.PORT}`, { label: 'HTTP' })
 })
 
 module.exports = app;
