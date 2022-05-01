@@ -52,7 +52,6 @@
   "author": "Switchblade Team",
   "license": "MIT",
   "engines": {
-    "node": ">15 <17",
-    "npm": "~1.0.20"
+    "node": ">15 <17"
   }
 }
