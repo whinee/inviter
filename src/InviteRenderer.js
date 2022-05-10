@@ -2,7 +2,7 @@ const svgdom = require('svgdom')
 const SVG = require('@svgdotjs/svg.js')
 const TextToSVG = require('text-to-svg')
 const Discord = require('./Discord.js')
-const sharp = require('sharp');
+const svg64 = require('svg64');
 
 SVG.extend([SVG.Path, SVG.Circle], {
     rightmost: function () {
@@ -108,6 +108,7 @@ module.exports = class InviteRenderer {
             animation = true,
             theme = 'dark',
             color = {},
+            png = false,
         }
     ) {
         const invite = await Discord.getInvite(inviteCode)
@@ -278,6 +279,10 @@ module.exports = class InviteRenderer {
             .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT + PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
         membersText.y((PRESENCE_LINE_HEIGHT - membersText.height()) / 2)
 
-        return canvas.svg()
+        if (png) {
+            return `<img src='${svg64(canvas.svg())}'>`;
+        } else {
+            return canvas.svg()
+        }
     }
 }

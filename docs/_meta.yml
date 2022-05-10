@@ -1,8 +1,8 @@
 generated:
   docs:
     files:
-    - docs/README.md
     - docs/license.md
+    - docs/README.md
     folders: []
   pdoc:
     files: []

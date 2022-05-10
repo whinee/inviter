@@ -52,8 +52,13 @@ app.get('/:query', async (req, res) => {
         logger.error(`Failed to render ${inviteCode}, invite doesn't exist or has no guild`, { label: 'Renderer' })
         return res.sendStatus(404)
     }
-    res.setHeader('Content-Type', 'image/svg+xml')
-    res.send(inviteSVG)
+    if (req.query.png) {
+        res.setHeader('Content-Type', 'text/html')
+        res.send(inviteSVG)
+    } else {
+        res.setHeader('Content-Type', 'image/svg+xml')
+        res.send(inviteSVG)
+    }
 })
 
 app.use(Sentry.Handlers.errorHandler())

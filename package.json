@@ -6,16 +6,21 @@
   "dependencies": {
     "@sentry/node": "^6.13.2",
     "@svgdotjs/svg.js": "^3.1.1",
+    "canvg": "^4.0.0",
     "core-js": "^3.4",
     "dd-trace": "^1.4.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
+    "reimg": "^1.0.0",
     "sharp": "^0.30.3",
     "svg-png-converter": "^0.0.8",
+    "svg2png": "^4.1.1",
+    "svg64": "^1.1.0",
     "svgdom": "^0.1.8",
     "text-to-svg": "^3.1.5",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
