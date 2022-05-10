@@ -54,7 +54,9 @@ app.get('/:query', async (req, res) => {
     }
     if (req.query.png) {
         res.setHeader('Content-Type', 'text/html')
-        res.send(inviteSVG)
+        res.send(
+            `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta class="dynamic" name="twitter:image" content="${req.params.query}"><meta class="dynamic" property="og:url" content="${req.params.query}"><meta class="dynamic" property="og:image" content="${req.params.query}"><meta itemprop="contentUrl" content="${req.params.query}"></head><body>${inviteSVG}</body></html>`
+        )
     } else {
         res.setHeader('Content-Type', 'image/svg+xml')
         res.send(inviteSVG)
