@@ -44,7 +44,7 @@ app.use(morgan('combined', { stream: { write: message => logger.info(message.tri
 app.use(express.static(process.cwd() + '/site'));
 
 app.get('/:query', async (req, res) => {
-    logger.info(`Got request to render ${req.params.query}`)
+    logger.info(`Got request to render ${req.originalUrl}`)
     const inviteCode = await InviteResolver.resolve(req.params.query)
     logger.info(`Rendering ${inviteCode}`, { label: 'Renderer' })
     const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
@@ -55,7 +55,7 @@ app.get('/:query', async (req, res) => {
     if (req.query.png) {
         res.setHeader('Content-Type', 'text/html')
         res.send(
-            `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta class="dynamic" name="twitter:image" content="${req.params.query}"><meta class="dynamic" property="og:url" content="${req.params.query}"><meta class="dynamic" property="og:image" content="${req.params.query}"><meta itemprop="contentUrl" content="${req.params.query}"></head><body>${inviteSVG}</body></html>`
+            `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta class="dynamic" name="twitter:image" content="${req.originalUrl}"><meta class="dynamic" property="og:url" content="${req.originalUrl}"><meta class="dynamic" property="og:image" content="${req.originalUrl}"><meta itemprop="contentUrl" content="${req.originalUrl}"></head><body>${inviteSVG}</body></html>`
         )
     } else {
         res.setHeader('Content-Type', 'image/svg+xml')
