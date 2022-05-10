@@ -34,12 +34,10 @@ rules:
 
 requirements:
   dev: dev_req.txt
-  prod: requirements.txt
 
 env:
   dev:
     req:
-      - prod
       - dev
 
 license:

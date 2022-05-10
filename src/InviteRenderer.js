@@ -2,6 +2,7 @@ const svgdom = require('svgdom')
 const SVG = require('@svgdotjs/svg.js')
 const TextToSVG = require('text-to-svg')
 const Discord = require('./Discord.js')
+const sharp = require('sharp');
 
 SVG.extend([SVG.Path, SVG.Circle], {
     rightmost: function () {
@@ -21,6 +22,10 @@ const strings = require('./strings.json')
 const PADDING = 16
 const ICON_SIZE = 50
 
+const SPLASH_HEIGHT = 64
+const SPLASH_DW = 480
+const SPLASH_DH = 270
+
 const HEADER_FONT_SIZE = 12
 const HEADER_LINE_HEIGHT = 16
 const HEADER_MARGIN_BOTTOM = 12
@@ -37,7 +42,7 @@ const PRESENCE_DOT_SIZE = 8
 const PRESENCE_DOT_MARGIN_RIGHT = 4
 
 const INVITE_WIDTH = 430
-const INVITE_HEIGHT = 110
+const INVITE_BASE_HEIGHT = 110
 
 const BUTTON_WIDTH = 94.75
 const BUTTON_HEIGHT = 40
@@ -56,17 +61,22 @@ const BADGES = {
 
 const COMMON_COLORS = {
     joinButtonBackground: '#3ba55c',
-    joinButtonText: '#ffffff',
+    joinButtonText: '#fff',
     online: '#3ba55c',
     members: '#747f8d',
     badges: {
         PARTNERED: {
             flowerStar: '#7289da',
-            icon: '#ffffff'
+            icon: '#fff'
         },
         VERIFIED: {
             flowerStar: '#3ba55c',
-            icon: '#ffffff'
+            icon: '#fff'
+        },
+        BOOST: {
+            flowerStar: '#4f545c',
+            i0: '#fff',
+            i3: '#ff73fa'
         }
     }
 }
@@ -91,7 +101,7 @@ const THEMES = {
 }
 
 module.exports = class InviteRenderer {
-    static async render (
+    static async render(
         inviteCode,
         {
             language = 'en',
@@ -109,9 +119,14 @@ module.exports = class InviteRenderer {
         const document = window.document
         SVG.registerWindow(window, document)
         const canvas = SVG.SVG(document.documentElement)
+
+        const splash = invite.guild.splash;
+
+        const INVITE_HEIGHT = (splash ? INVITE_BASE_HEIGHT + SPLASH_HEIGHT : INVITE_BASE_HEIGHT)
+
         canvas.viewbox(0, 0, INVITE_WIDTH, INVITE_HEIGHT).width(INVITE_WIDTH).height(INVITE_HEIGHT)
 
-        Object.entries(color).forEach(function([k, v]) {
+        Object.entries(color).forEach(function ([k, v]) {
             color[k] = `#${v}`
         });
 
@@ -121,8 +136,6 @@ module.exports = class InviteRenderer {
             ...color
         }
 
-        console.log(`${themeColors.serverName}`)
-
         // Background
         canvas.rect(INVITE_WIDTH, INVITE_HEIGHT).radius(3).fill(themeColors.background)
 
@@ -130,7 +143,20 @@ module.exports = class InviteRenderer {
         const mainContainer = canvas.nested()
             .width(INVITE_WIDTH - 2 * PADDING)
             .height(INVITE_HEIGHT - 2 * PADDING)
-            .move(PADDING, PADDING)
+            .move(PADDING, (splash ? PADDING + SPLASH_HEIGHT : PADDING))
+
+        // Server Splash
+        if (splash) {
+            const splashContainer = canvas.nested()
+                .width(INVITE_WIDTH)
+                .height(270)
+            const splashImgContainer = splashContainer.rect(INVITE_WIDTH, SPLASH_HEIGHT)
+            const splashBase64 = await Discord.fetchSplash(Discord.getSplashUrl(invite.guild.id, splash))
+            const splashImage = splashContainer.image(`data:image/png;base64,${splashBase64}`)
+                .move((INVITE_WIDTH - SPLASH_DW) / 2, (SPLASH_HEIGHT - SPLASH_DH) / 2)
+                .size(SPLASH_DW, SPLASH_DH)
+            splashImage.clipWith(splashImgContainer)
+        }
 
         // Header
         const headerContainer = mainContainer.nested().width(mainContainer.width()).height(HEADER_LINE_HEIGHT)
@@ -140,13 +166,16 @@ module.exports = class InviteRenderer {
         const contentContainer = mainContainer.nested()
             .width(mainContainer.width())
             .height(mainContainer.height() - headerContainer.height() - HEADER_MARGIN_BOTTOM)
-            .move(0, headerContainer.height() + HEADER_MARGIN_BOTTOM)
+            .move(0, (splash ? headerContainer.height() + HEADER_MARGIN_BOTTOM - (SPLASH_HEIGHT / 2) : headerContainer.height() + HEADER_MARGIN_BOTTOM))
 
         // Server Icon
-        const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill(themeColors.serverIcon)
+        const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE)
+            .radius(16)
+            .fill(themeColors.serverIcon)
+            .move(0, (splash ? (SPLASH_HEIGHT / 2) : 0))
         if (invite.guild.icon) {
             const iconBase64 = await Discord.fetchIcon(Discord.getIconUrl(invite.guild.id, invite.guild.icon))
-            const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
+            const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE).move(0, (splash ? (SPLASH_HEIGHT / 2) : 0))
             iconImage.clipWith(squircle)
         }
 
@@ -198,6 +227,27 @@ module.exports = class InviteRenderer {
                 .path(BADGES.PARTNERED)
                 .fill(themeColors.badges.PARTNERED.icon)
             EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
+        } else if (invite.guild.premium_subscription_count >= 14) {
+            const boost = badgeContainer
+                .path(Constants.LEVEL)
+                .fill(themeColors.badges.BOOST.flowerStar)
+            const bl = badgeContainer.nested().y(2.6333).x(5.01665)
+            for (const path of Constants.BOOST[2]) { bl.path(path).fill(themeColors.badges.BOOST.i3) }
+            EXTRA_SERVER_NAME_PADDING = boost.width() + BADGE_MARGIN_RIGHT
+        } else if (invite.guild.premium_subscription_count >= 7) {
+            const boost = badgeContainer
+                .path(Constants.LEVEL)
+                .fill(themeColors.badges.BOOST.flowerStar)
+            const bl = badgeContainer.nested().y(2.6333).x(5.01665)
+            for (const path of Constants.BOOST[1]) { bl.path(path).fill(themeColors.badges.BOOST.i0) }
+            EXTRA_SERVER_NAME_PADDING = boost.width() + BADGE_MARGIN_RIGHT
+        } else if (invite.guild.premium_subscription_count >= 2) {
+            const boost = badgeContainer
+                .path(Constants.LEVEL)
+                .fill(themeColors.badges.BOOST.flowerStar)
+            const bl = badgeContainer.nested().y(2.6333).x(5.01665)
+            for (const path of Constants.BOOST[0]) { bl.path(path).fill(themeColors.badges.BOOST.i0) }
+            EXTRA_SERVER_NAME_PADDING = boost.width() + BADGE_MARGIN_RIGHT
         }
 
         // Server Name

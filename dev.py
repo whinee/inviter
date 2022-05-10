@@ -55,8 +55,8 @@ if __name__ == "__main__":
             with open('dev.yml', 'r') as f:
                 y = yaml.safe_load(f)
             ls = []
-            for C in y["env"]["dev"]["req"]:
-                ls.append(f'-r {y["requirements"][C]}')
+            for c in y["env"]["dev"]["req"]:
+                ls.append(f'-r {y["requirements"][c]}')
             run(f'pip install --require-virtualenv {" ".join(ls)}')
         elif sys.argv[1] == "docs":
             from scripts import md_vars
