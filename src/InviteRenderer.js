@@ -108,7 +108,6 @@ module.exports = class InviteRenderer {
             animation = true,
             theme = 'dark',
             color = {},
-            png = false,
         }
     ) {
         const invite = await Discord.getInvite(inviteCode)
@@ -279,10 +278,6 @@ module.exports = class InviteRenderer {
             .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT + PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
         membersText.y((PRESENCE_LINE_HEIGHT - membersText.height()) / 2)
 
-        if (png) {
-            return `<img src='${svg64(canvas.svg())}'>`;
-        } else {
-            return canvas.svg()
-        }
+        return canvas.svg()
     }
 }
